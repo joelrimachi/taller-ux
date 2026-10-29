@@ -24,7 +24,7 @@ body {
 }
 
 .tarjeta {
-  max-width: 480px; 
+  max-width: 520px; 
   margin: 32px auto; 
   padding: 32px; 
   background: #ffffff; 
@@ -32,25 +32,23 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.tarjeta img { 
-  width: 100%; 
-  border-radius: 8px; 
-} 
+h1, h2 { 
+  color: var(--color-texto);
+  margin-top: 0;
+}
 
-h1 { 
-  font-size: 28px; 
-  margin: 16px 0 4px; 
-} 
+h1 { font-size: 26px; }
+h2 { font-size: 20px; margin-top: 24px; }
 
 .ayuda { 
   color: var(--color-suave); 
-  margin: 0 0 24px; 
+  margin: 0 0 20px; 
 } 
 
 fieldset { 
   border: none; 
   padding: 0; 
-  margin: 0 0 24px; 
+  margin: 0 0 20px; 
 } 
 
 legend { 
@@ -65,23 +63,28 @@ label {
   margin: 12px 0 4px; 
 } 
 
-input, select {
+input, textarea {
   width: 100%;
   min-height: 44px; 
-  padding: 8px 12px; 
+  padding: 10px 12px; 
   font-size: 16px;
   border: 1px solid var(--color-borde); 
   border-radius: 8px;
+  font-family: inherit;
+}
+
+textarea {
+  resize: vertical;
 }
 
 .validado input:invalid,
-.validado select:invalid { 
+.validado textarea:invalid { 
   border: 2px solid var(--color-error); 
 } 
 
 .acciones { 
   display: flex; 
-  gap: 24px; 
+  gap: 16px; 
   flex-wrap: wrap; 
 } 
 
@@ -101,11 +104,6 @@ button {
   font-weight: bold;
 }
 
-.boton-principal:disabled { 
-  opacity: 0.6; 
-  cursor: wait; 
-} 
-
 .boton-secundario { 
   background: transparent; 
   color: var(--color-suave);
@@ -120,16 +118,22 @@ button {
 .mensaje { 
   min-height: 24px; 
   font-weight: bold; 
+  margin-bottom: 12px;
 } 
 
-.mensaje.error { 
-  color: var(--color-error); 
-} 
+.mensaje.error { color: var(--color-error); } 
+.mensaje.exito { color: var(--color-exito); } 
+.mensaje.info { color: var(--color-primario); }
 
-.mensaje.exito { 
-  color: var(--color-exito); 
-} 
+ul {
+  padding-left: 0;
+  list-style: none;
+}
 
-.mensaje.info { 
-  color: var(--color-primario); 
+.nota-item {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 8px;
 }

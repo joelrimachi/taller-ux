@@ -1,41 +1,42 @@
-const formulario = document.getElementById("formulario"); 
-const mensaje = document.getElementById("mensaje");
-const boton = formulario.querySelector(".boton-principal");
+const formulario = document.getElementById("form-nota");
+const mensajeEstado = document.getElementById("mensaje-estado");
+const contenedorNotas = document.getElementById("contenedor-notas");
 
-function mostrarMensaje(texto, tipo) { 
-  mensaje.textContent = texto; 
-  mensaje.className = "mensaje " + tipo;
+function mostrarMensaje(texto, tipo) {
+  mensajeEstado.textContent = texto;
+  mensajeEstado.className = "mensaje " + tipo;
 }
 
-formulario.addEventListener("submit", function (evento) { 
-  evento.preventDefault(); 
+formulario.addEventListener("submit", function (evento) {
+  evento.preventDefault();
   formulario.classList.add("validado");
 
   if (!formulario.checkValidity()) {
-    mostrarMensaje("Revisa los campos marcados en rojo.", "error"); 
-    formulario.querySelector("input:invalid, select:invalid").focus(); 
+    mostrarMensaje("Por favor, completa los campos requeridos.", "error");
+    formulario.querySelector("input:invalid, textarea:invalid").focus();
     return;
   }
 
-  boton.disabled = true; 
-  boton.textContent = "Enviando...";
-  mostrarMensaje("Enviando tu inscripción...", "info");
+  const titulo = document.getElementById("titulo-nota").value;
+  const contenido = document.getElementById("contenido-nota").value;
 
-  setTimeout(function () { 
-    boton.disabled = false; 
-    boton.textContent = "Inscribirme";
-    const taller = document.getElementById("taller").value;
-    mostrarMensaje("¡Listo! Quedaste inscrito en el taller de " + taller + ".", "exito");
-  }, 1500);
+  const li = document.createElement("li");
+  li.className = "nota-item";
+  li.innerHTML = `<strong>${titulo}</strong><p>${contenido}</p>`;
+  contenedorNotas.appendChild(li);
+
+  mostrarMensaje("¡Nota agregada con éxito!", "exito");
+  formulario.reset();
+  formulario.classList.remove("validado");
 });
 
 formulario.addEventListener("reset", function (evento) {
-  if (!confirm("¿Seguro que quieres borrar todos los datos del formulario?")) { 
+  if (!confirm("¿Seguro que deseas limpiar el formulario?")) {
     evento.preventDefault();
     return;
   }
   formulario.classList.remove("validado");
-  mostrarMensaje("Formulario limpio. Puedes empezar de nuevo.", "info");
+  mostrarMensaje("Formulario limpio.", "info");
 });
 
 
