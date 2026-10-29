@@ -1,0 +1,19 @@
+name: Auditoría de Lighthouse
+
+on:
+  push:
+    branches: [ main ] 
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Ejecutar Auditoría de Lighthouse
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: 'https://joelrimachi.github.io/taller-ux/'
+          uploadArtifacts: true 
+          temporaryPublicStorage: true 
